@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+system "docker compose -f docker-compose.yml up -d"
+exec "./bin/rails", "server", *ARGV
