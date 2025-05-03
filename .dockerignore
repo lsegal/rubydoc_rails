@@ -11,6 +11,7 @@
 /.env*
 
 # Ignore all default key files.
+/config/credentials.yml.enc
 /config/master.key
 /config/credentials/*.key
 

@@ -1,0 +1,25 @@
+services:
+  app:
+    image: docmeta/rubydoc-app
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config/master.key:/app/config/master.key
+      - ./config/credentials.yml.enc:/app/config/credentials.yml.enc
+      - ./storage:/app/storage
+      - ./data:/app/data
+      - ./log:/app/log
+    env_file:
+      - .env.production
+    deploy:
+      resources:
+        limits:
+          cpus: "6"
+          memory: 6G
+      replicas: 2
+      update_config:
+        order: start-first
+    depends_on:
+      - db
